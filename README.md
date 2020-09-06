@@ -10,17 +10,42 @@
 
 ### Installation
 
-1. Clone the repo
-2. Run yarn install
+**Yarn**
 
 ```bash
-cd nestjs-exceptions
-yarn install
+yarn add @dollarsign/nestjs-exceptions
 ```
 
-## Change Log
+**NPM**
 
-See [Changelog](CHANGELOG.md) for more information.
+```bash
+npm install --save @dollarsign/nestjs-exceptions
+```
+
+### Usage
+
+To create a global-scoped filter, you would do the following:
+
+```typescript
+// main.ts
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.useGlobalFilters(new GlobalExceptionFilter());
+  await app.listen(3000);
+}
+bootstrap();
+```
+
+The following example uses a manually instantiated method-scoped filter. Just as with HTTP based applications, you can also use controller-scoped filters (i.e., prefix the controller class with a @UseFilters() decorator).
+
+```typescript
+@UseFilters(new GlobalRpcExceptionFilter())
+@MessagePattern({ cmd: 'sum' })
+accumulate(data: number[]): number {
+  return (data || []).reduce((a, b) => a + b);
+}
+
+```
 
 ## Contributing
 
