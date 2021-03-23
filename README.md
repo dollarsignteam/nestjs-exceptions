@@ -1,22 +1,20 @@
-<h1 align="center"></h1>
-
 <div align="center">
   <a href="http://nestjs.com/" target="_blank">
     <img src="https://nestjs.com/img/logo_text.svg" width="150" alt="Nest Logo" />
   </a>
 </div>
 
-<h3 align="center">NestJS Exceptions</h3>
+## NestJS Exceptions
 
 ### Installation
 
-**Yarn**
+#### Yarn
 
 ```bash
 yarn add @dollarsign/nestjs-exceptions
 ```
 
-**NPM**
+#### NPM
 
 ```bash
 npm install --save @dollarsign/nestjs-exceptions
@@ -32,6 +30,22 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalFilters(new GlobalExceptionFilter());
   await app.listen(3000);
+}
+bootstrap();
+```
+
+To instantiate a microservice
+
+```typescript
+// main.ts
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+    AppModule,
+    {
+      transport: Transport.TCP,
+    },
+  );
+  app.useGlobalFilters(new GlobalRpcExceptionFilter());
 }
 bootstrap();
 ```
