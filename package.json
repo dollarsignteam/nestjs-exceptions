@@ -1,6 +1,6 @@
 {
   "name": "@dollarsign/nestjs-exceptions",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "NestJS powerful exceptions handler",
   "license": "MIT",
   "readmeFilename": "README.md",
